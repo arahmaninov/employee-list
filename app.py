@@ -5,4 +5,4 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return 'Flask initialized successfuly'
+    return render_template("home.html")
