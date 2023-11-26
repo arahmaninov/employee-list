@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Сотрудники предприятия
+{% endblock %}
+
+{% block content %}
+<table border="1px">
+	<thead>
+		<td><strong>Фамилия</strong></td>
+		<td><strong>Имя</strong></td>
+		<td><strong>Отчество</strong></td>
+		<td><strong>Дата приёма</strong></td>
+		<td><strong>Должность</strong></td>
+		<td></td>
+		<td></td>
+	</thead>
+
+	{% for row in rows %}
+	<tr>
+		<td>{{ row["lastname"] }}</td>
+		<td>{{ row["name"] }}</td>
+		<td>{{ row["surname"] }}</td>
+		<td>{{ row["date"] }}</td>
+		<td>{{ row["position"] }}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

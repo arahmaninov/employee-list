@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Добавить сотрудника
+{% endblock %}
+
+{% block content %}
+<form action="{{ url_for('new_employee') }}" method="POST">
+	<h2>Добавление нового сотрудника:</h2>
+	Фамилия<br>
+	<input type="text" name="lastname" /><br>
+
+	Имя<br>
+	<input type="text" name="name" /><br>
+
+	Отчество<br>
+	<input type="text" name="surname" /><br>
+
+	Дата приёма<br>
+	<input type="text" name="date" /><br>
+
+	Должность<br>
+	<select name="position">
+		{% for row in rows %}
+		<option value="{{ row["title"] }}"> {{ row["title"] }} </option>
+		{% endfor %}
+	</select><br><br>
+
+	<input type="submit" value="Добавить" /><br>
+</form>
+{% endblock %}
