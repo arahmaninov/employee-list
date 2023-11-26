@@ -32,3 +32,27 @@ def new_employee():
     con.close()
 
     return render_template("newemployee.html", rows=rows)
+
+@app.route("/addemployee", methods = ["POST", "GET"])
+def add_employee():
+    if request.method == "POST":
+        try:
+            lastname = request.form["lastname"]
+            name = request.form["name"]
+            surname = request.form["surname"]
+            date = request.form["date"]
+            position = request.form["position"]
+
+            with sqlite3.connect("database.db") as con:
+                cur = con.cursor()
+                cur.execute("INSERT INTO employee (lastname, name, surname, date, position) VALUES (?, ?, ?, ?, ?)", (lastname, name, surname, date, position))
+
+                con.commit()
+                status = "Запись успешно добавлена"
+        except:
+            con.rollback()
+            status = "Ошибка при добавлении записи"
+
+        finally:
+            con.close()
+            return render_template("result.html", status=status)
