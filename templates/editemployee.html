@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Редактирование записи сотрудника
+{% endblock %}
+
+{% block content %}
+<h2>Редактирование записи сотрудника</h2>
+{% for row in rows %}
+<form action="{{ url_for('employeeedited') }}" method="POST">
+	<h3>Сотрудник: {{ row['lastname'] }}. ID: {{ row['rowid'] }}</h3>
+	<input type="hidden" name="rowid" value="{{ row['rowid'] }}">
+	
+	Фамилия<br>
+	<input type="text" name="lastname" value="{{ row['lastname'] }}"><br>
+	
+	Имя<br>
+	<input type="text" name="name" value="{{ row['name'] }}"><br>
+
+	Отчество<br>
+	<input type="text" name="surname" value="{{ row['surname'] }}"><br>
+
+	Дата приёма<br>
+	<input type="text" name="date" value="{{ row['date'] }}"><br>
+
+	Должность<br>
+	<!--
+	<select name="position">
+		<option value="{{ row['position'] }}"> {{ row['position'] }} </option>
+	</select><br><br>
+	-->
+	<br>
+	<input type="submit" value="Изменить" /><br>
+</form>
+{% endfor %}
+{% endblock %}
