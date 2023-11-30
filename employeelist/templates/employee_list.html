@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+
+Сотрудники
+
+{% endblock %}
+
+
+{% block content %}
+
+{% for employee in employees %}
+Фамилия: {{ employee.lastname }}
+<br>
+Имя: {{ employee.name }}
+<br>
+Отчество: {{ employee.surname }}
+<br>
+Дата приёма: {{ employee.date }}
+<br>
+Должность: {{ employee.title }}
+<br><br>
+{% endfor %}
+
+{% endblock %}
