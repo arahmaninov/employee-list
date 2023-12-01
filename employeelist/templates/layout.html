@@ -7,9 +7,9 @@
 
 	<body>
 		<div>
-			<a href="{{ url_for('home') }}">О приложении</a>
-			<a href="{{ url_for('show_employees') }}">Список сотрудников</a>
-			<a href="{{ url_for('new_employee') }}">Добавить сотрудника</a>
+			<a href="{% url 'index' %}">О приложении</a>
+			<a href="{% url 'employeelist' %}">Список сотрудников</a>
+			<a href="">Добавить сотрудника</a>
 			<a href="">Справочник должностей</a>
 		</div>
 
