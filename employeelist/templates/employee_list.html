@@ -10,17 +10,39 @@
 
 {% block content %}
 
+<h2>Список сотрудников</h2>
+<form method="post" action="{% url 'employeelist' %}">
+	{% csrf_token %}
+<table>
+	<thead>
+		<td><strong>Фамилия</strong></td>
+		<td><strong>Имя</strong></td>
+		<td><strong>Отчество</strong></td>
+		<td><strong>Дата приёма</strong></td>
+		<td><strong>Должность</strong></td>
+	</thead>
+	
+	<tr>
+	{% for field in form %}
+	<td> {{ field }} </td>
+	{% endfor %}
+	<td> <button name="save">Добавить</button></td>
+	</tr>
+
 {% for employee in employees %}
-Фамилия: {{ employee.lastname }}
-<br>
-Имя: {{ employee.name }}
-<br>
-Отчество: {{ employee.surname }}
-<br>
-Дата приёма: {{ employee.date }}
-<br>
-Должность: {{ employee.title }}
-<br><br>
+<tr>
+	<td> {{ employee.lastname }} </td>
+	<td> {{ employee.name }} </td>
+	<td> {{ employee.surname }} </td>
+	<td> {{ employee.date }} </td>
+	<td> {{ employee.title }} </td>
+	<td> <button name="edit">Редактировать</button></td>
+	<td> <button name="delete">Удалить</button></td>
+</tr>
+
 {% endfor %}
+
+</table>
+</form>
 
 {% endblock %}
