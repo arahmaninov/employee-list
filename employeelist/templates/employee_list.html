@@ -11,7 +11,8 @@
 {% block content %}
 
 <h2>Список сотрудников</h2>
-
+<form method="post" action="{% url 'employeelist' %}">
+	{% csrf_token %}
 <table>
 	<thead>
 		<td><strong>Фамилия</strong></td>
@@ -25,7 +26,7 @@
 	{% for field in form %}
 	<td> {{ field }} </td>
 	{% endfor %}
-	<td> <button name="save">Сохранить</button></td>
+	<td> <button name="save">Добавить</button></td>
 	</tr>
 
 {% for employee in employees %}
@@ -42,5 +43,6 @@
 {% endfor %}
 
 </table>
+</form>
 
 {% endblock %}
