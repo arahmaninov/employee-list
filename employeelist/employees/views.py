@@ -9,13 +9,28 @@ def index(request):
 def employee_list(request):
     context = {}
     employees = Employee.objects.all()
-    form = EmployeeForm()
     context['employees'] = employees
-    context['form'] = form
+    form = EmployeeForm()
 
     if request.method == 'POST':
         if 'save' in request.POST:
-            form = EmployeeForm(request.POST)
+            pk = request.POST.get('save')
+            if not pk:
+                form = EmployeeForm(request.POST)
+            else:
+                employee = Employee.objects.get(id=pk)
+                form = EmployeeForm(request.POST, instance=employee)
             form.save()
+            form = EmployeeForm()
+        elif 'delete' in request.POST:
+            pk = request.POST.get('delete')
+            employee = Employee.objects.get(id=pk)
+            employee.delete()
+        elif 'edit' in request.POST:
+            pk = request.POST.get('edit')
+            employee = Employee.objects.get(id=pk)
+            form = EmployeeForm(instance=employee)
+
+    context['form'] = form
 
     return render(request, 'employee_list.html', context) 
