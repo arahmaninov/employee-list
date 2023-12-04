@@ -17,5 +17,11 @@ def employee_list(request):
         if 'save' in request.POST:
             form = EmployeeForm(request.POST)
             form.save()
+        elif 'delete' in request.POST:
+            pk = request.POST.get('delete')
+            employee = Employee.objects.get(id=pk)
+            employee.delete()
+
+    context['form'] = form
 
     return render(request, 'employee_list.html', context) 

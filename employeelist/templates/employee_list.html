@@ -37,7 +37,7 @@
 	<td> {{ employee.date }} </td>
 	<td> {{ employee.title }} </td>
 	<td> <button name="edit">Редактировать</button></td>
-	<td> <button name="delete">Удалить</button></td>
+	<td> <button formnovalidate name="delete" value="{{ employee.id }}">Удалить</button></td>
 </tr>
 
 {% endfor %}
