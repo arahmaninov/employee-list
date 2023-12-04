@@ -22,25 +22,28 @@
 		<td><strong>Должность</strong></td>
 	</thead>
 	
+	{% if not form.instance.id %}
 	<tr>
-	{% for field in form %}
-	<td> {{ field }} </td>
-	{% endfor %}
-	<td> <button name="save">Добавить</button></td>
+		{% include 'save.html' %}
+	</tr>
+	{% endif %}
+
+	{% for employee in employees %}
+	<tr>
+		{% if form.instance.id == employee.id %}
+			{% include 'save.html' %}
+		{% else %}
+			<td> {{ employee.lastname }} </td>
+			<td> {{ employee.name }} </td>
+			<td> {{ employee.surname }} </td>
+			<td> {{ employee.date }} </td>
+			<td> {{ employee.title }} </td>
+			<td> <button formnovalidate name="edit" value="{{ employee.id }}">Редактировать</button></td>
+			<td> <button formnovalidate name="delete" value="{{ employee.id }}">Удалить</button></td>
+		{% endif %}
 	</tr>
 
-{% for employee in employees %}
-<tr>
-	<td> {{ employee.lastname }} </td>
-	<td> {{ employee.name }} </td>
-	<td> {{ employee.surname }} </td>
-	<td> {{ employee.date }} </td>
-	<td> {{ employee.title }} </td>
-	<td> <button name="edit">Редактировать</button></td>
-	<td> <button formnovalidate name="delete" value="{{ employee.id }}">Удалить</button></td>
-</tr>
-
-{% endfor %}
+	{% endfor %}
 
 </table>
 </form>
