@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Справочник должностей
+{% endblock %}
+
+{% block content %}
+
+<h2>Справочник должностей</h2>
+
+<form method="post" action="{% url 'positionlist' %}">
+	{% csrf_token %}
+	<table>
+		<thead>
+			<td><strong>Должность</strong></td>
+		</thead>
+
+		{% if not form.instance.id %}
+		<tr>
+			{% include 'saveposition.html' %}
+		</tr>
+		{% endif %}
+
+		{% for position in positions %}
+		<tr>
+			{% if form.instance.id == position.id %}
+				{% include 'saveposition.html' %}
+			{% else %}
+			<td>{{ position.title }}</td>
+			<td><button formnovalidate name="edit" value="{{ position.id }}">Изменить</button></td>
+			<td><button formnovalidate name="delete" value="{{ position.id }}">Удалить</button></td>
+			{% endif %}
+		</tr>
+		{% endfor %}
+
+
+	</table>
+</form>
+
+{% endblock %}

@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from employees.views import index, employee_list
+from positions.views import positionlist
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('employeelist/', employee_list, name='employeelist'),
+    path('positionlist/', positionlist, name='positionlist'),
 ]
