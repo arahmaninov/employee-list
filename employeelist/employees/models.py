@@ -9,3 +9,6 @@ class Employee(models.Model):
     surname = models.CharField(max_length=100)
     date = models.DateField(default=date.today)
     title = models.ForeignKey(Position, on_delete=models.SET_NULL, null=True)
+
+    class Meta():
+        ordering = ['lastname']

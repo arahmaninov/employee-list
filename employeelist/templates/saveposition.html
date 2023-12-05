@@ -1,0 +1,9 @@
+{% for field in form %}
+<td>{{ field }}</td>
+{% endfor %}
+
+{% if not position.id %}
+<td><button name="add">Добавить</button></td>
+{% else %}
+<td><button name="add" value="{{ position.id }}">Готово</button></td>
+{% endif %}
