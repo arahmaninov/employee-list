@@ -3,7 +3,7 @@
 {% endfor %}
 
 {% if not position.id %}
-<td><button name="add">Добавить</button></td>
+<td><button name="add" class="btn btn-primary">Добавить</button></td>
 {% else %}
-<td><button name="add" value="{{ position.id }}">Готово</button></td>
+<td><button name="add" value="{{ position.id }}" class="btn btn-success">Готово</button></td>
 {% endif %}

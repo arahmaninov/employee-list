@@ -13,7 +13,7 @@
 <h2>Список сотрудников</h2>
 <form method="post" action="{% url 'employeelist' %}">
 	{% csrf_token %}
-<table>
+<table class="table table-light">
 	<thead>
 		<td><strong>Фамилия</strong></td>
 		<td><strong>Имя</strong></td>
@@ -38,8 +38,8 @@
 			<td> {{ employee.surname }} </td>
 			<td> {{ employee.date }} </td>
 			<td> {{ employee.title }} </td>
-			<td> <button formnovalidate name="edit" value="{{ employee.id }}">Редактировать</button></td>
-			<td> <button formnovalidate name="delete" value="{{ employee.id }}">Удалить</button></td>
+			<td> <button formnovalidate name="edit" value="{{ employee.id }}" class="btn btn-secondary">Редактировать</button></td>
+			<td> <button formnovalidate name="delete" value="{{ employee.id }}" class="btn btn-danger">Удалить</button></td>
 		{% endif %}
 	</tr>
 
